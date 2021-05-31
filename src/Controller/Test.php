@@ -31,7 +31,7 @@ class Test extends AbstractController
      * @Route("/api/sms/send/twilio", name="send_sms_twilio", methods={"POST"})
      */
     
-    public function sendTwilioSms(Request $request,SerializerInterface $serializer, EntityManagerInterface $em,SendSms $send){
+    public function sendTwilioSms(Request $request,SerializerInterface $serializer, EntityManagerInterface $em){
 
         try{
             // get request content
