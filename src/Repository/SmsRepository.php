@@ -48,20 +48,4 @@ class SmsRepository extends ServiceEntityRepository
     }
     */
 
-    /**
-     * Get sum of verbrauch 
-     * I used CASE inside SUm statement because doctorine didnt work with normal sum
-     */
-    public function getSumOfVerbrauch($value): ?array
-    {
-        return $this->createQueryBuilder('s')
-                    ->select('SUM(CASE s.verbrauch WHEN 1 THEN 1 ELSE 0 END) AS used,  
-                                SUM(CASE s.verbrauch WHEN 0 THEN 1 ELSE 0 END) AS invalid,
-                                SUM(CASE s.verbrauch WHEN 9 THEN 1 ELSE 0 END) AS appointment,
-                                SUM(CASE s.verbrauch WHEN 8 THEN 1 ELSE 0 END) AS todo')
-                    ->andWhere('s.rechnung = :val')
-                    ->setParameter('val', $value)
-                    ->getQuery()
-                    ->getOneOrNullResult();
-    }
 }
